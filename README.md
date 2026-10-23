@@ -18,13 +18,15 @@ O'quv markazlari uchun **Learning Management System** backend'i. FastAPI, SQLAlc
 ## 🚀 Ishga tushirish
 
 ```bash
-git clone https://github.com/ifarohiddin/lms_system.git
-cd lms_system
+git clone https://github.com/ifarohiddin/lms-api.git
+cd lms-api
 
 python -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
 
 pip install -r requirements.txt
+cp .env.example .env          # Windows: copy .env.example .env
+# .env ichiga SECRET_KEY yozing: python -c "import secrets; print(secrets.token_hex(32))"
 uvicorn main:app --reload
 ```
 
@@ -49,7 +51,7 @@ SQLite baza (`lms.db`) birinchi ishga tushishda avtomatik yaratiladi.
 ## 📁 Tuzilma
 
 ```text
-lms_system/
+lms-api/
 ├── main.py         # FastAPI ilova va endpointlar
 ├── models.py       # SQLAlchemy modellari (User, Branch, Group, StudentGroup)
 ├── schemas.py      # Pydantic sxemalari
@@ -60,7 +62,7 @@ lms_system/
 
 ## 🌱 Rejalar
 
-- [ ] `SECRET_KEY` ni muhit o'zgaruvchisiga (`.env`) ko'chirish
+- [x] `SECRET_KEY` muhit o'zgaruvchisidan (`.env`) o'qiladi
 - [ ] Testlar qo'shish
 - [ ] Davomat va to'lovlar moduli
 

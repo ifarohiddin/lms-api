@@ -1,3 +1,7 @@
+import os
+import secrets
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +16,11 @@ from models import User, Branch, Group, StudentGroup
 from constants import ROLE_TEACHER, ROLE_ADMIN, ROLE_SUPERADMIN
 from schemas import BranchCreate, BranchResponse, BranchUpdate, GroupCreate, GroupResponse, StudentGroupCreate, StudentGroupResponse, SuperAdminCreate, Token, UserCreate, UserResponse
 
-SECRET_KEY = "a"
+load_dotenv()
+
+# Kalit .env dan olinadi. Berilmasa har ishga tushishda tasodifiy kalit yaratiladi
+# (xavfsiz, lekin server qayta ishga tushganda tokenlar yaroqsiz bo'ladi).
+SECRET_KEY = os.getenv("SECRET_KEY") or secrets.token_hex(32)
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
