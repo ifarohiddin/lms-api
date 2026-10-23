@@ -27,12 +27,13 @@ source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env          # Windows: copy .env.example .env
 # .env ichiga SECRET_KEY yozing: python -c "import secrets; print(secrets.token_hex(32))"
+python create_superadmin.py   # birinchi superadminni yaratish (bo'sh bazada majburiy)
 uvicorn main:app --reload
 ```
 
 Swagger hujjatlari: <http://127.0.0.1:8000/docs>
 
-SQLite baza (`lms.db`) birinchi ishga tushishda avtomatik yaratiladi.
+SQLite baza (`lms.db`) birinchi ishga tushishda avtomatik yaratiladi. `/users/` endpointi login talab qilgani uchun, avval `python create_superadmin.py` bilan superadmin yarating, so'ng `/token` orqali kiring.
 
 ## 🔌 Asosiy endpointlar
 
@@ -57,6 +58,7 @@ lms-api/
 ├── schemas.py      # Pydantic sxemalari
 ├── database.py     # Baza ulanishi
 ├── constants.py    # Rollar
+├── create_superadmin.py  # Birinchi superadminni yaratish
 └── requirements.txt
 ```
 
